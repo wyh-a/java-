@@ -1,0 +1,90 @@
+/**
+	作者：wyh
+	时间：2020.3.18
+	功能：N*N螺旋矩阵
+*/
+
+
+class  Screw
+{
+		int n;
+		public void Matrix(){
+		int up =1;
+		int dowm =2;
+		int left =3;
+		int right = 4;			//上下左右分别用数字1，2，3，4表示。
+		int a[][]=new int[n][n];     //二维数组a用来存储螺旋矩阵
+		int max = n*n;
+		int flag =4;                       //用flag表示方向
+		int j=0;int i = 0;				//i表行，j表列
+			for(int num=1;num<=max;num++){
+				a[i][j] = num;
+				if(flag == 4){
+					if (  j+1 < n && a[i][j+1] == 0)  //判断当前位置的右边位置
+					{
+						j++;
+					}
+					else{
+						i++;
+						flag = 2;
+						continue;
+					}
+				}
+				if(flag == 2){
+					if ( i+1 <n &&  a[i+1][j] == 0) // 下
+					{
+						i++;
+					}
+					else{
+						j--;
+						flag=3;
+						continue;
+					}
+				}
+				if(flag ==3){
+					if (j-1 >=0 && a[i][j-1] == 0 )  //左
+					{
+						j--;
+					}
+					else{
+						i--;
+						flag =1;
+						continue;
+					}
+				}
+				if(flag ==1){
+					if( i-1>=0 &&  a[i-1][j] == 0) //上
+					{
+						i--;
+					} 
+					else{
+						j++;
+						flag =4;
+						continue;
+					}
+				}
+			}
+			for(int x=0;x<n;x++){
+			for(int y=0;y<n;y++){
+				System.out.print(a[x][y] +"  ");
+			}
+			System.out.println();
+		}
+	}
+
+
+	//构造方法
+	public Screw(int n)
+	{
+		this.n = n;
+	}
+}
+
+
+public class exp4 
+{
+	public static void main(String [] args){
+		Screw s = new Screw(5);
+		s.Matrix();
+	}
+}
